@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-Album Slideshow with Captions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .album {
+      margin-bottom: 40px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .album h2 {
+      text-align: center;
+    }
+
+    .slideshow-container {
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      position: relative;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .nav-buttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .nav-buttons button {
+      padding: 8px 16px;
+      margin: 0 5px;
+      border: none;
+      border-radius: 4px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    .nav-buttons button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Album example -->
+<div class="album" id="album1">
+  <h2>Sageful</h2>
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="sageful/sageful_1.jpg" />
+      <div class="caption">Sageful 1</div>
+    </div>
+    <div class="slide">
+      <img src="sageful/sageful_2.jpg" />
+      <div class="caption">Sageful 2</div>
+    </div>
+    <div class="slide">
+      <img src="sageful/sageful_3.jpg" />
+      <div class="caption">Sageful 3</div>
+    </div>
+	<div class="slide">
+      <img src="sageful/sageful_4.jpg" />
+      <div class="caption">Sageful 4</div>
+    </div>
+	<div class="slide">
+      <img src="sageful/sageful_5.jpg" />
+      <div class="caption">Sageful 5</div>
+    </div>
+	<div class="slide">
+      <img src="sageful/sageful_6.png" />
+      <div class="caption">Sageful 6</div>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="prevSlide('album1')">← Prev</button>
+    <button onclick="nextSlide('album1')">Next →</button>
+  </div>
+</div>
+
+<!-- Album 2 -->
+<div class="album" id="album2">
+  <h2>Assets + Caller</h2>
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="assets/Assets.png" />
+      <div class="caption">Assets</div>
+    </div>
+    <div class="slide">
+      <img src="caller/GrandStream Caller.png" />
+      <div class="caption">GrandStream Caller</div>
+    </div>   
+  </div>
+  <div class="nav-buttons">
+    <button onclick="prevSlide('album2')">← Prev</button>
+    <button onclick="nextSlide('album2')">Next →</button>
+  </div>
+</div>
+
+<!-- Album 3 -->
+<div class="album" id="album3">
+  <h2>STools</h2>
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="stools/STools_for_PC_A.png" />
+      <div class="caption">STools PC</div>
+    </div>
+    <div class="slide">
+      <img src="stools/STools_for_PC_B.png" />
+      <div class="caption">STools PC</div>
+    </div>
+    <div class="slide">
+      <img src="stools/STools_for_PC_C.png" />
+      <div class="caption">STools PC</div>
+    </div>
+	 <div class="slide active">
+      <img src="stools/STools_for_PDT_A.png" />
+      <div class="caption">STools PDT</div>
+    </div>
+    <div class="slide">
+      <img src="stools/STools_for_PDT_B.png" />
+      <div class="caption">STools PDT</div>
+    </div>
+    <div class="slide">
+      <img src="stools/STools_for_PDT_C.png" />
+      <div class="caption">STools PDT</div>
+    </div>
+  </div>
+  <div class="nav-buttons">
+    <button onclick="prevSlide('album3')">← Prev</button>
+    <button onclick="nextSlide('album3')">Next →</button>
+  </div>
+</div>
+
+<script>
+  const albums = {};
+
+  function initAlbum(albumId) {
+    const container = document.querySelector(`#${albumId} .slideshow-container`);
+    const slides = container.querySelectorAll(".slide");
+    albums[albumId] = { slides, current: 0 };
+  }
+
+  function showSlide(albumId) {
+    const album = albums[albumId];
+    album.slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === album.current);
+    });
+  }
+
+  function nextSlide(albumId) {
+    const album = albums[albumId];
+    album.current = (album.current + 1) % album.slides.length;
+    showSlide(albumId);
+  }
+
+  function prevSlide(albumId) {
+    const album = albums[albumId];
+    album.current = (album.current - 1 + album.slides.length) % album.slides.length;
+    showSlide(albumId);
+  }
+
+  // Khởi tạo tất cả album khi tải trang
+  ["album1", "album2", "album3"].forEach(initAlbum);
+</script>
+</body>
+</html>

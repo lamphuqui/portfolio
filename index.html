@@ -1,0 +1,121 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ho Va Ten Bani Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        .sidebar img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #e07a5f;
+            margin-bottom: 20px;
+        }
+        .content {
+            flex: 3;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img src="quilp.png" alt="Hình Ảnh Cá Nhân">
+            <div class="contact">
+                <h3>Liên Hệ</h3>
+                <p><strong>Địa chỉ:</strong> Địa chỉ của bạn</p>
+                <p><strong>Điện thoại:</strong> Số điện thoại của bạn</p>
+                <p><strong>Email:</strong> email.cua.ban@example.com</p>
+                <hr>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>Tóm Tắt</h2>
+                <p>Mô tả tóm tắt về bạn...</p>
+            </div>
+            <div class="section">
+                <h2>Điểm Nổi Bật Kỹ Năng</h2>
+                <p>Kỹ năng của bạn...</p>
+            </div>
+            <div class="section">
+                <h2>Kinh Nghiệm</h2>
+                <p>Kinh nghiệm làm việc của bạn...</p>
+            </div>
+            <div class="section">
+                <h2>Danh Hiệu & Giải Thưởng</h2>
+                <p>Các danh hiệu và giải thưởng của bạn...</p>
+            </div>
+            <div class="section">
+                <h2>Học Vấn</h2>
+                <p>Thông tin học vấn của bạn...</p>
+            </div>
+            <div class="section">
+                <h2>Chứng Chỉ</h2>
+                <p>Các chứng chỉ của bạn...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

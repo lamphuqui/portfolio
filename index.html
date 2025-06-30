@@ -1,119 +1,254 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ho Va Ten Bani Portfolio</title>
+    <title>Lâm Phú Quí- Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #333;
         }
         .container {
+            max-width: 900px;
+            margin: 20px auto;
             display: flex;
-            max-width: 800px;
-            margin: 0 auto;
+            gap: 20px;
         }
         .sidebar {
-            flex: 1;
+            width: 30%;
+            background: #fff;
             padding: 20px;
-            background: #f4f4f4;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .sidebar h1 {
+            font-size: 1.5em;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .sidebar p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+            text-align: center;
         }
         .sidebar img {
-            width: 150px;
-            height: 150px;
-            border: 2px solid #e07a5f;
-            margin-bottom: 20px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid #007bff;
+            display: block;
+            margin: 15px auto;
+        }
+        .contact, .certificates, .degrees, .goals, .languages, .portfolio-links, .achievements {
+            margin-top: 20px;
+        }
+        .contact h3, .certificates h3, .degrees h3, .goals h3, .languages h3, .portfolio-links h3, .achievements h3 {
+            font-size: 1.2em;
+            color: #007bff;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        .contact hr, .certificates hr, .degrees hr, .goals hr, .languages hr, .portfolio-links hr, .achievements hr {
+            border: 0;
+            height: 1px;
+            background: #007bff;
+            margin-bottom: 10px;
+        }
+        .contact p, .certificates p, .degrees p, .goals p, .languages p, .portfolio-links p, .achievements p {
+            font-size: 0.9em;
+            margin: 5px 0;
+            text-align: left;
+        }
+        .portfolio-links a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+        .portfolio-links a:hover {
+            text-decoration: underline;
         }
         .content {
-            flex: 3;
+            width: 70%;
+            background: #fff;
             padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .section {
             margin-bottom: 20px;
         }
         .section h2 {
-            border-bottom: 2px solid #000;
+            font-size: 1.5em;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
             padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .section p {
+            font-size: 1em;
+            line-height: 1.8;
+        }
+        .section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .section li {
+            font-size: 1em;
+            margin: 5px 0;
+        }
+        .experience-item {
+            margin-bottom: 15px;
+        }
+        .experience-item h3 {
+            font-size: 1.2em;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+        .experience-item p.date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .experience-item ul {
+            margin-left: 20px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar, .content {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <img src="quilp.png" alt="Hình Ảnh Cá Nhân">
+            <h1>LÂM PHÚ QUÍ</h1>
+            <p><strong>Sinh năm:</strong> 22/02/1988</p>
+            <img src="avatar.png" alt="Hình Ảnh Cá Nhân">
             <div class="contact">
-                <h3>Liên Hệ</h3>
-                <p><strong>Địa chỉ:</strong> Địa chỉ của bạn</p>
-                <p><strong>Điện thoại:</strong> Số điện thoại của bạn</p>
-                <p><strong>Email:</strong> email.cua.ban@example.com</p>
+                <h3>Liên hệ</h3>
                 <hr>
+                <p><strong>Địa chỉ:</strong></p></p>
+                <p>246/8/54B Tầm Vu, Hưng Lợi, Ninh Kiều, Cần Thơ</p>
+                <p><strong>Mobile:</strong></p>
+                <p>+84 933 712 202</p>
+                <p><strong>Email:</strong></p>
+                <p>lamphuqui@gmail.com</p>
+                <p><strong>Portfolio:</strong></p>
+                <a href="https://lamphuqui.github.io/portfolio">https://lamphuqui.github.io/portfolio</a>       
             </div>
+             <div class="degrees">
+                <h3>Bằng cấp</h3>
+                <hr>
+                <p><strong>NIIT - Kỹ sư phần mềm (2011)</strong></p>
+            </div>
+               <div class="languages">
+                <h3>Ngoại ngữ</h3>
+                <hr>
+                <p>Đọc hiểu tài liệu kỹ thuật tiếng Anh tốt</p>                
+            </div>
+             <div class="achievements">
+                <h3>Thành tích</h3>
+                <hr>
+                <p>VinService – Lãnh đạo nguồn</p>
+                <p>Wincommere – Nhân viên tiên tiến</p>
+            </div>
+            <div class="certificates">
+                <h3>Chứng chỉ</h3>
+                <hr>
+                <p>DNIIT (Software Engineering – Java Technologies) </p>
+                <p>CGPA: <strong>3.95/4</strong></p>
+            </div>
+           
+            <div class="goals">
+                <h3>Mục tiêu</h3>
+                <hr>
+                <p>Tìm kiếm môi trường ổn định, chuyên nghiệp, để phát triển bền vững và nâng cao năng lực,  kỹ thuật qua các dự án thực tế.</p>
+            </div>
+         
         </div>
         <div class="content">
             <div class="section">
-                <h2>Tóm Tắt</h2>
-                <p>Mô tả tóm tắt về bạn...</p>
+                <h2>Tóm tắt năng lực</h2>
+                <p>Lập trình viên fullstack với hơn <strong>7 năm kinh nghiệm</strong> trong lĩnh vực IT và phát triển phần mềm. Có khả năng độc lập xây dựng ứng dụng di động (Flutter), web, backend API (NodeJS), đồng thời am hiểu hệ thống mạng, hỗ trợ kỹ thuật và phát triển phần mềm trên nhiều nền tảng như Java, C#, PHP. Đã từng làm Team Leader và có kinh nghiệm làm việc với hệ thống lớn (2,500+ người dùng). Tư duy logic tốt, khả năng học công nghệ mới nhanh, sẵn sàng làm việc độc lập hoặc theo nhóm.</p>
             </div>
             <div class="section">
-                <h2>Điểm Nổi Bật Kỹ Năng</h2>
-                <p>Kỹ năng của bạn...</p>
+                <h2>Kỹ năng chuyên môn</h2>
+                <ul>
+                    <li><strong>Ngôn ngữ lập trình: </strong>Java, C#, Dart, PHP, JavaScript, HTML/CSS</li>
+                    <li><strong>Framework: </strong>Flutter, NodeJS, NextJS</li>
+                    <li><strong>hát triển ứng dụng: </strong>iOS, Android, Web, Desktop (Windows app)</li>
+                    <li><strong>Cơ sở dữ liệu: </strong>MSSQL, MySQL, MongoDB, SQLite</li>
+                    <li><strong>Hệ thống: </strong>Linux, Windows Server, cấu hình router/switch/wifi</li>
+                    <li><strong>Khác: </strong>Tư duy DevOps, quản lý tài sản CNTT, lập trình công cụ nội bộ</li>
+                </ul>
             </div>
             <div class="section">
-                <h2>Kinh Nghiệm</h2>
-                <p>Kinh nghiệm làm việc của bạn...</p>
+                <h2>Kinh nghiệm làm việc</h2>
+                <div class="experience-item">
+                    <h3>The CrownX (TCX) | Chuyên viên</h3>
+                    <p class="date">2022 – Hiện tại</p>
+                    <ul>
+                        <li>Quản trị hệ thống CNTT, xử lý sự cố kỹ thuật tại chuỗi siêu thị, cửa hàng Wincommerce, Supra, WinEco</li>
+                        <li>Phát triển các ứng dụng hỗ trợ vận hành nội bộ</li>
+                        <li>Hỗ trợ kỹ thuật người dùng đầu cuối, đảm bảo tính ổn định hệ thống</li>                        
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Wincommerce | Team Leader</h3>
+                    <p class="date">03/2018 – 2021</p>
+                    <ul>
+                        <li>Lập kế hoạch bảo trì, nâng cấp hệ thống thiết bị mạng</li>
+                        <li><strong>Phát triển ứng dụng quản lý tài sản thiết bị (Assets Management)</strong> tại siêu thị</li>
+                        <li>Quản lý sự cố helpdesk và tối ưu hiệu suất làm việc của đội nhóm</li>                        
+                        <li>Đảm bảo uptime hệ thống >99.9%</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Vinservice | IT Helpdesk</h3>
+                    <p class="date">2017 – 03/2018</p>
+                    <ul>
+                        <li>Hỗ trợ kỹ thuật cho ~2,500 người dùng tại cửa hàng và siêu thị</li>
+                        <li>Phát triển công cụ <strong>Grandstream Caller</strong> để hỗ trợ gọi nội bộ</li>
+                        <li>Quản lý sự cố helpdesk và tối ưu hiệu suất làm việc của đội nhóm</li>                        
+                        <li>Tham gia giám sát hệ thống (PRTG, Zabbix)</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Winmart | IT/ALC</h3>
+                    <p class="date">2015 - 2017</p>
+                    <ul>
+                        <li>Lập trình <strong>công cụ kiểm kê hàng hóa</strong> (STools)</li>
+                        <li>Quản lý cơ sở dữ liệu, hỗ trợ cấu hình hệ thống mạng và máy chủ</li>
+                        <li>Xử lý các vấn đề liên quan đến hệ thống bán hàng</li>
+                    </ul>
+                </div>
             </div>
             <div class="section">
-                <h2>Danh Hiệu & Giải Thưởng</h2>
-                <p>Các danh hiệu và giải thưởng của bạn...</p>
-            </div>
-            <div class="section">
-                <h2>Học Vấn</h2>
-                <p>Thông tin học vấn của bạn...</p>
-            </div>
-            <div class="section">
-                <h2>Chứng Chỉ</h2>
-                <p>Các chứng chỉ của bạn...</p>
+                <h2>Dự án nổi bật</h2>
+                 <ul>
+                    <li><strong>Sageful</strong> (Dart/Flutter) + API Backend (MongoDB, NodeJS) + Admin Page (NextJS) – Thông tin thực phẩm bổ trợ sức khỏe, hỗ trợ đa ngôn ngữ</li>
+                    <li><strong>Telegram bot</strong> (C#) + API Backend (NodeJS) – Phục vụ cảnh báo mạng và tra cứu thông tin, xử lý công việc.</li>
+                    <li><strong>Assets Management</strong> (PHP) – Quản lý tài sản</li>
+                    <li><strong>STools</strong> (C#) – Hỗ trợ, kiểm kê, in tem kệ trong siêu thị</li>
+                    <li><strong>Grandstream Caller</strong> (C#) – Dùng danh bạ máy tính thực hiện cuộc gọi đến IP Phone</li>                   
+                </ul>
+                <p><strong>Link dự án: </strong><a href="https://lamphuqui.github.io/portfolio/slide/">https://lamphuqui.github.io/portfolio/slide/</a></p>
+                
             </div>
         </div>
     </div>

@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: white;
+            /* Ensure the iframe has a white background */
+        }
+    </style>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fullstack Developer Portfolio - Nguyen Van A</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            :root {
+                --primary: #2563eb;
+                --secondary: #0f172a;
+                --accent: #8b5cf6;
+                --light: #f8fafc;
+                --dark: #0f172a;
+                --gray: #94a3b8;
+                --success: #10b981;
+            }
+
+            body {
+                background-color: var(--light);
+                color: var(--dark);
+                line-height: 1.6;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            /* Language Toggle */
+            .language-toggle {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .lang-btn {
+                border: none;
+                background: none;
+                padding: 5px 15px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                color: var(--dark);
+            }
+
+            .lang-btn.active {
+                background-color: var(--primary);
+                color: white;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+            }
+
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 0;
+            }
+
+            .logo {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--primary);
+            }
+
+            .logo span {
+                color: var(--accent);
+            }
+
+            .nav-links {
+                display: flex;
+                list-style: none;
+            }
+
+            .nav-links li {
+                margin-left: 30px;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--dark);
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--primary);
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 150px 0 100px;
+                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                margin-bottom: 20px;
+                color: var(--secondary);
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: var(--gray);
+                margin-bottom: 30px;
+            }
+
+            .hero-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                border-radius: 30px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                display: inline-block;
+            }
+
+            .btn-primary {
+                background-color: var(--primary);
+                color: white;
+                border: 2px solid var(--primary);
+            }
+
+            .btn-primary:hover {
+                background-color: transparent;
+                color: var(--primary);
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+            }
+
+            .btn-secondary {
+                background-color: transparent;
+                color: var(--primary);
+                border: 2px solid var(--primary);
+            }
+
+            .btn-secondary:hover {
+                background-color: var(--primary);
+                color: white;
+                transform: translateY(-3px);
+            }
+
+            /* About Section */
+            .about {
+                padding: 100px 0;
+                background-color: white;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 2.5rem;
+                margin-bottom: 60px;
+                color: var(--secondary);
+            }
+
+            .section-title span {
+                color: var(--primary);
+            }
+
+            .about-content {
+                display: flex;
+                align-items: center;
+                gap: 50px;
+            }
+
+            .about-text {
+                flex: 1;
+            }
+
+            .about-text h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+                color: var(--secondary);
+            }
+
+            .about-text p {
+                margin-bottom: 20px;
+                color: var(--gray);
+            }
+
+            .skills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 30px;
+            }
+
+            .skill-tag {
+                background-color: #dbeafe;
+                color: var(--primary);
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-weight: 500;
+            }
+
+            .about-image {
+                flex: 1;
+                text-align: center;
+            }
+
+            .profile-img {
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 5px solid #e0f2fe;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Experience Section */
+            .experience {
+                padding: 100px 0;
+                background-color: #f1f5f9;
+            }
+
+            .timeline {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+
+            .timeline::after {
+                content: '';
+                position: absolute;
+                width: 4px;
+                background-color: var(--primary);
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -2px;
+            }
+
+            .timeline-item {
+                padding: 20px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item:nth-child(odd) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 50%;
+            }
+
+            .timeline-content {
+                padding: 30px;
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                position: relative;
+            }
+
+            .timeline-content::after {
+                content: '';
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: white;
+                border: 4px solid var(--primary);
+                border-radius: 50%;
+                top: 30px;
+                z-index: 1;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::after {
+                right: -12px;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -12px;
+            }
+
+            .timeline-date {
+                background-color: var(--primary);
+                color: white;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+                color: var(--secondary);
+            }
+
+            .timeline-content h4 {
+                color: var(--accent);
+                margin-bottom: 15px;
+                font-size: 1.1rem;
+            }
+
+            .timeline-content ul {
+                padding-left: 20px;
+                margin: 15px 0;
+            }
+
+            .timeline-content li {
+                margin-bottom: 10px;
+                color: var(--gray);
+            }
+
+            /* Projects Section */
+            .projects {
+                padding: 100px 0;
+                background-color: white;
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 30px;
+            }
+
+            .project-card {
+                background: white;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .project-card:hover {
+                transform: translateY(-10px);
+            }
+
+            /* Slideshow Container */
+            .slideshow-container {
+                position: relative;
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .slides {
+                display: flex;
+                width: 300%;
+                height: 100%;
+                transition: transform 0.5s ease;
+            }
+
+            .slide {
+                width: 33.33%;
+                height: 100%;
+            }
+
+            .slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: pointer;
+            }
+
+            /* Slideshow Navigation */
+            .prev,
+            .next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: rgba(0, 0, 0, 0.5);
+                color: white;
+                padding: 10px 15px;
+                cursor: pointer;
+                border: none;
+                font-size: 18px;
+                transition: background-color 0.3s;
+                z-index: 2;
+            }
+
+            .prev {
+                left: 0;
+            }
+
+            .next {
+                right: 0;
+            }
+
+            .prev:hover,
+            .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            /* Slideshow Indicators */
+            .indicators {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 5px;
+                z-index: 2;
+            }
+
+            .indicator {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .indicator.active {
+                background-color: white;
+            }
+
+            .project-header {
+                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+                color: white;
+                padding: 20px;
+            }
+
+            .project-header h3 {
+                font-size: 1.4rem;
+                margin-bottom: 10px;
+            }
+
+            .project-body {
+                padding: 20px;
+            }
+
+            .project-body ul {
+                padding-left: 20px;
+                margin: 15px 0;
+            }
+
+            .project-body li {
+                margin-bottom: 8px;
+                color: var(--gray);
+            }
+
+            .project-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .project-tag {
+                background-color: #e0f2fe;
+                color: var(--primary);
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+            }
+
+            /* Contact Section */
+            .contact {
+                padding: 100px 0;
+                background: linear-gradient(135deg, #2563eb 0%, #0f172a 100%);
+                color: white;
+            }
+
+            .contact .section-title {
+                color: white;
+            }
+
+            .contact-content {
+                display: flex;
+                gap: 50px;
+            }
+
+            .contact-info {
+                flex: 1;
+            }
+
+            .contact-info h3 {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .contact-info p {
+                margin-bottom: 30px;
+                opacity: 0.9;
+            }
+
+            .contact-methods {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .contact-method {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .contact-icon {
+                font-size: 1.5rem;
+                color: var(--accent);
+            }
+
+            .contact-form {
+                flex: 1;
+                background: rgba(255, 255, 255, 0.1);
+                padding: 30px;
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 500;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px 15px;
+                border: none;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.15);
+                color: white;
+                font-size: 1rem;
+            }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .form-group textarea {
+                height: 150px;
+                resize: vertical;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--secondary);
+                color: white;
+                text-align: center;
+                padding: 30px 0;
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+
+            .social-link {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+                font-size: 1.5rem;
+                transition: all 0.3s ease;
+                text-decoration: none;
+            }
+
+            .social-link:hover {
+                background: var(--primary);
+                transform: translateY(-5px);
+            }
+
+            .copyright {
+                opacity: 0.7;
+            }
+
+            /* Language Sections */
+            .vi-content,
+            .en-content {
+                display: none;
+            }
+
+            .vi-content.active,
+            .en-content.active {
+                display: block;
+            }
+
+            /* Modal for full image */
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 2000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+            }
+
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .close:hover {
+                color: #bbb;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 992px) {
+                .hero h1 {
+                    font-size: 2.8rem;
+                }
+
+                .about-content {
+                    flex-direction: column;
+                }
+
+                .contact-content {
+                    flex-direction: column;
+                }
+
+                .timeline::after {
+                    left: 31px;
+                }
+
+                .timeline-item {
+                    width: 100%;
+                    padding-left: 70px;
+                    padding-right: 25px;
+                }
+
+                .timeline-item:nth-child(even) {
+                    left: 0;
+                }
+
+                .timeline-item:nth-child(odd) .timeline-content::after,
+                .timeline-item:nth-child(even) .timeline-content::after {
+                    left: -12px;
+                }
+
+                .nav-links {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .hero h1 {
+                    font-size: 2.2rem;
+                }
+
+                .hero-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .language-toggle {
+                    margin-left: 0;
+                    margin-top: 10px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <nav>
+                    <div class="logo">Lâm Phú <span>Quí</span></div>
+                    <ul class="nav-links">
+                        <li><a href="#home" class="nav-link-vi">Trang chủ</a></li>
+                        <li><a href="#about" class="nav-link-vi">Giới thiệu</a></li>
+                        <li><a href="#experience" class="nav-link-vi">Kinh nghiệm</a></li>
+                        <li><a href="#projects" class="nav-link-vi">Dự án</a></li>
+                        <li><a href="#contact" class="nav-link-vi">Liên hệ</a></li>
+
+                        <li><a href="#home-en" class="nav-link-en" style="display:none;">Home</a></li>
+                        <li><a href="#about-en" class="nav-link-en" style="display:none;">About</a></li>
+                        <li><a href="#experience-en" class="nav-link-en" style="display:none;">Experience</a></li>
+                        <li><a href="#projects-en" class="nav-link-en" style="display:none;">Projects</a></li>
+                        <li><a href="#contact-en" class="nav-link-en" style="display:none;">Contact</a></li>
+                    </ul>
+                    <div class="language-toggle">
+                        <button class="lang-btn active" data-lang="vi">VI</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Vietnamese Content -->
+        <div class="vi-content active">
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Lập Trình Viên Fullstack Mobile</h1>
+                        <p>Chuyên phát triển ứng dụng Flutter đa nền tảng, hệ thống backend Node.js và triển khai ứng
+                            dụng thực tế. Có kinh nghiệm trong phát triển ứng dụng nội bộ hỗ trợ vận hành công ty có hệ
+                            thống chuỗi bán lẻ.</p>
+                        <div class="hero-buttons">
+                            <a href="#experience" class="btn btn-primary">Xem Kinh Nghiệm</a>
+                            <a href="#contact" class="btn btn-secondary">Liên Hệ</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about" id="about">
+                <div class="container">
+                    <h2 class="section-title">Giới thiệu <span>Về Tôi</span></h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Lập Trình Viên Fullstack Mobile</h3>
+                            <p>Lập trình viên Fullstack Mobile với kinh nghiệm thực chiến trong phát triển ứng dụng
+                                Flutter đa nền tảng (iOS, Android), kết nối hệ thống backend Node.js và triển khai ứng
+                                dụng thực tế. Có nền tảng vững chắc trong phát triển ứng dụng nội bộ hỗ trợ khắc phục
+                                lỗi hệ thống cho các chi nhánh trong chuỗi bán lẻ. Khả năng giao tiếp hiệu quả với người
+                                dùng đầu cuối, sẵn sàng tìm hiểu công nghệ mới.</p>
+
+                            <div class="skills">
+                                <span class="skill-tag">Flutter</span>
+                                <span class="skill-tag">Dart</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">MSSQL</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">SQLite</span>
+                                <span class="skill-tag">JWT</span>
+                                <span class="skill-tag">OAuth2</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">C#</span>
+                            </div>
+                        </div>
+                        <div class="about-image">
+                            <img src="img/avatar.png" alt="Profile"
+                                class="profile-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience" id="experience">
+                <div class="container">
+                    <h2 class="section-title">Kinh Nghiệm <span>Làm Việc</span></h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">2022 - Nay</div>
+                                <h3>The CrownX (Tập đoàn Masan)</h3>
+                                <h4>Chuyên viên lập trình</h4>
+                                <ul>
+                                    <li>Phát triển <b>Telegram Bot</b> bằng C# tích hợp báo cáo, cảnh báo up/down hệ
+                                        thống, tra cứu thông tin, hỗ trợ xử lý nhanh tài khoản của người dùng</li>
+                                    <li>Xây dựng backend bằng Node.js và MySQL, tạo <b>Services Windows</b> hỗ trợ bot
+                                        telegram</li>
+                                    <li>Phát triển extensions <b>IT Assistant</b> cho Chrome để hỗ trợ nhanh
+                                        <b>ServiceDesk</b>, kết nối backend dùng web socket
+                                    </li>
+                                    <li>Hỗ trợ kỹ thuật người dùng đầu cuối tại các cửa hàng <b>Wincommerce</b>
+                                        (Winmart, Winmart+), <b>Supra</b>, <b>WinEco</b></li>
+                                    <li>Đảm bảo vận hành hệ thống ổn định và hỗ trợ xử lý sự cố kịp thời</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">03/2018 - 2021</div>
+                                <h3>Wincommerce (Tập đoàn Masan)</h3>
+                                <h4>Trưởng nhóm kỹ thuật</h4>
+                                <ul>
+                                    <li>Phát triển hệ thống quản lý tài sản thiết bị <b>(Assets Management)</b></li>
+                                    <li>Lập kế hoạch bảo trì, nâng cấp hệ thống, kiểm tra các thiết bị định kỳ tại các
+                                        chuỗi siêu thị, cửa hàng</li>
+                                    <li>Dẫn dắt nhóm hỗ trợ <b>Helpdesk</b>, tối ưu hiệu suất vận hành và xử lý sự cố
+                                    </li>
+                                    <li>Đảm bảo uptime hệ thống đạt trên 99.9%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">05/2017 - 03/2018</div>
+                                <h3>VinService (Tập đoàn Vingroup)</h3>
+                                <h4>IT Helpdesk</h4>
+                                <ul>
+                                    <li>Lập trình ứng dụng <b>Grandstream Caller</b> hỗ trợ gọi nhanh đến người dùng
+                                        cuối</li>
+                                    <li>Quản lý, cài đặt ứng dụng và vận hành các hệ thống web chạy trên hệ điều hành
+                                        <b>Windows</b> & <b>Linux</b>
+                                    </li>
+                                    <li>Hỗ trợ kỹ thuật cho 2.500 người dùng tại 50 siêu thị và 1.000 cửa hàng</li>
+                                    <li>Cấu hình và quản lý hệ thống giám sát như <b>PRTG</b>, <b>Zabbix</b></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">06/2015 - 05/2017</div>
+                                <h3>VinMart (Tập đoàn Vingroup)</h3>
+                                <h4>IT/ALC</h4>
+                                <ul>
+                                    <li>Lập trình ứng dụng <b>STools for PC</b> và <b>STools for PDT</b> chạy trên thiết
+                                        bị kiểm kê, giảm thời gian và chi phí cho siêu thị</li>
+                                    <li>Cài đặt, cấu hình máy chủ và hệ thống mạng LAN, wifi, bảo trì máy tính,máy chủ,
+                                        xử lý các sự cố phát sinh</li>
+                                    <li>Quản lý, sao lưu các cơ sở dữ liệu <b>MSSQL</b>, <b>MySQL</b></li>
+                                    <li>Cấu hình cài đặt mail Outlook, SAP, thiết bị IP Phone</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects" id="projects">
+                <div class="container">
+                    <h2 class="section-title">Dự Án <span>Nổi Bật</span></h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="sageful-slides">
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_4.jpg" alt="Sageful Home Screen">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_2.jpg" alt="Sageful Detail Screen">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_3.jpg" alt="Sageful Profile Screen">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('sageful-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('sageful-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="sageful-indicators">
+                                    <span class="indicator active" onclick="currentSlide('sageful-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('sageful-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('sageful-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Sageful: Natural Foods & Facts</h3>
+                                <p>Tra cứu thông tin thực phẩm hỗ trợ sức khỏe</p>
+                            </div>
+                            <div class="project-body">
+                                <p><a href="https://apps.apple.com/app/sageful-natural-foods-facts/id6744504306">Download
+                                        Sageful on the App Store</a> </p>
+                                <ul>
+                                    <li>Tra cứu thông tin thực phẩm theo góc nhìn Đông y và Tây y</li>
+                                    <li>Thiết kế <b>Responsive</b> để hiển thị tốt trên nhiều nền tảng <b>Mobile</b>,
+                                        <b>Tablet</b>, <b>Web</b>
+                                    </li>
+                                    <li>Hỗ trợ <b>đa ngôn ngữ</b></li>
+                                    <li>Giao diện <b>Dark/Light</b> tăng trải nghiệm người dùng</li>
+                                    <li>Hệ thống backend với <b>Node.js</b>, <b>Express</b>, <b>MongoDB</b></li>
+                                    <li>Xác thực người dùng với <b>Google Sign-In</b>, <b>Apple Sign-In</b>, <b>JWT</b>
+                                    </li>
+                                    <li>Tích hợp <b>Cloudinary</b> để quản lý hình ảnh</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">Flutter</span>
+                                    <span class="project-tag">Node.js</span>
+                                    <span class="project-tag">Express</span>
+                                    <span class="project-tag">MongoDB</span>
+                                    <span class="project-tag">JWT</span>
+                                    <span class="project-tag">Apple Sign-In</span>
+                                    <span class="project-tag">Google Sign-In</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="budget-slides">
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/2563eb/white?text=Budget+Dashboard"
+                                            alt="Budget Dashboard">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1d4ed8/white?text=Budget+Transactions"
+                                            alt="Budget Transactions">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1e40af/white?text=Budget+Reports"
+                                            alt="Budget Reports">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('budget-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('budget-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="budget-indicators">
+                                    <span class="indicator active" onclick="currentSlide('budget-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('budget-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('budget-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Dino Budget Tracker</h3>
+                                <p>Theo dõi thu chi cá nhân</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>Ứng dụng theo dõi thu chi đa nền tảng</li>
+                                    <li>Tích hợp <b>Firebase</b> để lưu trữ dữ liệu</li>
+                                    <li>Xác thực người dùng với <b>Google Sign-In</b></li>
+                                    <li>Giao diện thân thiện, dễ sử dụng</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">Flutter</span>
+                                    <span class="project-tag">Firebase</span>
+                                    <span class="project-tag">Google Sign-In</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="telegram-slides">
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/0f172a/white?text=Telegram+Bot+Interface"
+                                            alt="Telegram Bot Interface">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1e293b/white?text=System+Monitoring"
+                                            alt="System Monitoring">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/334155/white?text=User+Management"
+                                            alt="User Management">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('telegram-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('telegram-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="telegram-indicators">
+                                    <span class="indicator active" onclick="currentSlide('telegram-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('telegram-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('telegram-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Telegram Bot</h3>
+                                <p>Hỗ trợ vận hành hệ thống nội bộ</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>Bot hỗ trợ báo cáo, cảnh báo up/down hệ thống mạng và thiết bị tại siêu thị, cửa
+                                        hàng</li>
+                                    <li>Tra cứu thông tin siêu thị, cửa hàng và xử lý tài khoản người dùng AD (Active
+                                        Directory)</li>
+                                    <li>Backend được xây dựng với <b>Node.js</b>, <b>MySQL</b></li>
+                                    <li>Tích hợp <b>Services Windows</b> dùng <b>C#</b> để chạy nền</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">Node.js</span>
+                                    <span class="project-tag">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="assets-slides">
+                                    <div class="slide">
+                                        <img src="projects/assets/Assets.png" alt="Asset Management System"
+                                            class="project-image">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('assets-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('assets-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="assets-indicators">
+                                    <span class="indicator active" onclick="currentSlide('assets-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('assets-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('assets-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Hệ thống Quản lý Tài sản</h3>
+                                <p>Quản lý thiết bị CNTT và nhân viên</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>Quản lý tài sản thiết bị CNTT trong doanh nghiệp</li>
+                                    <li>Tích hợp <b>LDAP</b> để đồng bộ thông tin nhân viên</li>
+                                    <li>Giao diện web với <b>PHP</b>, <b>Bootstrap</b></li>
+                                    <li>Lưu trữ dữ liệu với <b>MySQL</b></li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">PHP</span>
+                                    <span class="project-tag">MySQL</span>
+                                    <span class="project-tag">Bootstrap</span>
+                                    <span class="project-tag">LDAP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="stools-slides">
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PC_A.png" alt="STools for PC"
+                                            class="project-image">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PDT_A.png" alt="STools for PDT">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PDT_B.png" alt="STools for PD">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('stools-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('stools-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="stools-indicators">
+                                    <span class="indicator active" onclick="currentSlide('stools-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('stools-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('stools-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>STools cho PC và PDT</h3>
+                                <p>Hỗ trợ kiểm kê hàng hóa siêu thị</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li><b>STools</b> cho PC kết nối với CSDL <b>MSSQL</b>, giao diện thân thiện với
+                                        <b>DotnetBar</b>
+                                    </li>
+                                    <li>Tích hợp <b>XML</b> để cấu hình và lưu trữ dữ liệu</li>
+                                    <li><b>STools</b> cho PDT chạy Windows Mobile 6, dùng <b>SQLite</b> lưu dữ liệu</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">MSSQL</span>
+                                    <span class="project-tag">SQLite</span>
+                                    <span class="project-tag">XML</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="assistant-slides">
+                                    <div class="slide">
+                                        <img src="projects/caller/GrandStream Caller.PNG" alt="Asset Management System"
+                                            class="project-image">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('assistant-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('assistant-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="assistant-indicators">
+                                    <span class="indicator active" onclick="currentSlide('assistant-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('assistant-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('assistant-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>IT Assistant & Grandstream Caller</h3>
+                                <p>Hỗ trợ ServiceDesk</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li><b>Grandstream Caller</b> giúp kết nối danh bạ, gọi nhanh đến người dùng</li>
+                                    <li><b>IT Assistant</b> là <b>Extensions</b> cho Chrome dùng hỗ trợ tra cứu, xử lý
+                                        các công việc trên web <b>ServiceDesk</b></li>
+                                    <li>Kết nối backend dùng <b>WebSocket</b> để thực hiện thao tác đến <b>Active
+                                            Directory</b>, dữ liệu <b>MySQL</b></li>
+                                    <li>Tăng hiệu suất làm việc cho bộ phận IT</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">WebSocket</span>
+                                    <span class="project-tag">Chrome Extension</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact" id="contact">
+                <div class="container">
+                    <h2 class="section-title">Liên Hệ <span>Với Tôi</span></h2>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h3>Cùng nhau tạo nên sản phẩm chất lượng?</h3>
+                            <p>Tôi luôn sẵn sàng tham gia vào những dự án mới, học hỏi công nghệ và mang lại giá trị
+                                thực tế. Hãy liên hệ với tôi nếu bạn đang cần một thành viên giàu trách nhiệm, cầu tiến
+                                và linh hoạt trong công việc.</p>
+
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>lamphuqui@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Điện thoại</h4>
+                                        <p>+84 933 712 202</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Địa chỉ</h4>
+                                        <p>Cần Thơ, Việt Nam</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form">
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Họ và tên</label>
+                                    <input type="text" id="name" placeholder="Nhập họ tên của bạn" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" placeholder="Nhập email của bạn" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Tin nhắn</label>
+                                    <textarea id="message" placeholder="Nhập tin nhắn của bạn" required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Gửi tin nhắn</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <p class="copyright">© 2019 Nguyễn Văn A - Lập Trình Viên Fullstack. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- English Content -->
+        <div class="en-content">
+            <!-- Hero Section -->
+            <section class="hero" id="home-en">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Fullstack Mobile Developer</h1>
+                        <p>Specializing in cross-platform Flutter app development, Node.js backend systems, and
+                            real-world application deployment. Experienced in developing internal applications for
+                            large-scale retail operations and system troubleshooting.</p>
+                        <div class="hero-buttons">
+                            <a href="#experience-en" class="btn btn-primary">View Experience</a>
+                            <a href="#contact-en" class="btn btn-secondary">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about" id="about-en">
+                <div class="container">
+                    <h2 class="section-title">About <span>Me</span></h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <h3>Fullstack Mobile Developer</h3>
+                            <p>Fullstack Mobile Developer with hands-on experience in developing cross-platform Flutter
+                                applications (iOS, Android), connecting backend systems with Node.js, and deploying
+                                real-world applications. Solid foundation in developing internal applications to support
+                                operations and troubleshooting system issues in large-scale retail chains. Effective
+                                communication skills with end-users and eager to learn new technologies.</p>
+
+                            <div class="skills">
+                                <span class="skill-tag">Flutter</span>
+                                <span class="skill-tag">Dart</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Express</span>
+                                <span class="skill-tag">MongoDB</span>
+                                <span class="skill-tag">MSSQL</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">SQLite</span>
+                                <span class="skill-tag">JWT</span>
+                                <span class="skill-tag">OAuth2</span>
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">C#</span>
+                            </div>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://lamphuqui.github.io/portfolio/avatar.png" alt="Profile"
+                                class="profile-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section class="experience" id="experience-en">
+                <div class="container">
+                    <h2 class="section-title">Work <span>Experience</span></h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">2022 - Present</div>
+                                <h3>The CrownX (Masan Group)</h3>
+                                <h4>Software Developer</h4>
+                                <ul>
+                                    <li>Developed <b>Telegram Bot</b> using C# with system reporting, up/down alerts,
+                                        information lookup, and fast user account support</li>
+                                    <li>Built backend with Node.js and MySQL, Windows Services to support telegram bot
+                                    </li>
+                                    <li>Developed <b>IT Assistant</b> Chrome extension for fast ServiceDesk support,
+                                        connecting backend with web socket</li>
+                                    <li>Provided technical support to end users at Wincommerce (Winmart, Winmart+),
+                                        Supra, WinEco stores</li>
+                                    <li>Ensured stable system operations and provided timely troubleshooting support
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">03/2018 - 2021</div>
+                                <h3>Wincommerce (Masan Group)</h3>
+                                <h4>Technical Team Lead</h4>
+                                <ul>
+                                    <li>Developed <b>Assets Management</b> system for equipment tracking</li>
+                                    <li>Planned maintenance and system upgrades for network equipment across supermarket
+                                        chain</li>
+                                    <li>Led <b>Helpdesk</b> support team, optimized operational efficiency and incident
+                                        response</li>
+                                    <li>Maintained system uptime above 99.9%</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">05/2017 - 03/2018</div>
+                                <h3>VinService (Vingroup)</h3>
+                                <h4>IT Helpdesk</h4>
+                                <ul>
+                                    <li>Programmed <b>Grandstream Caller</b> application for quick calling to end users
+                                    </li>
+                                    <li>Managed, installed applications and operated web systems on <b>Windows</b> &
+                                        <b>Linux</b> OS
+                                    </li>
+                                    <li>Provided technical support for 2,500 users across 50 supermarkets and 1,000
+                                        stores</li>
+                                    <li>Configured and managed monitoring systems like <b>PRTG</b>, <b>Zabbix</b></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">06/2015 - 05/2017</div>
+                                <h3>VinMart (Vingroup)</h3>
+                                <h4>IT/ALC</h4>
+                                <ul>
+                                    <li>Programmed <b>STools for PC</b> and <b>STools for PDT</b> applications running
+                                        on inventory devices, reducing time and costs for supermarkets</li>
+                                    <li>Installed, configured servers and LAN, wifi network systems, maintained
+                                        computers, servers, troubleshooted issues</li>
+                                    <li>Managed, backed up <b>MSSQL</b>, <b>MySQL</b> databases</li>
+                                    <li>Configured Outlook mail, SAP, IP Phone devices</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="projects" id="projects-en">
+                <div class="container">
+                    <h2 class="section-title">Featured <span>Projects</span></h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="sageful-en-slides">
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_4.jpg" alt="Sageful Home Screen">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_2.jpg" alt="Sageful Detail Screen">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/sageful/sageful_3.jpg" alt="Sageful Profile Screen">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('sageful-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('sageful-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="sageful-en-indicators">
+                                    <span class="indicator active"
+                                        onclick="currentSlide('sageful-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('sageful-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('sageful-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Sageful: Natural Foods & Facts</h3>
+                                <p>Health food information lookup system</p>
+                            </div>
+                            <div class="project-body">
+                                <p><a href="https://apps.apple.com/app/sageful-natural-foods-facts/id6744504306">Download
+                                        Sageful on the App Store</a> </p>
+                                <ul>
+                                    <li>Lookup food information from Eastern and Western medicine perspectives</li>
+                                    <li><b>Responsive</b> design for optimal display on <b>Mobile</b>, <b>Tablet</b>,
+                                        <b>Web</b> platforms
+                                    </li>
+                                    <li><b>Multi-language</b> support</li>
+                                    <li><b>Dark/Light</b> mode for enhanced user experience</li>
+                                    <li>Backend system with <b>Node.js</b>, <b>Express</b>, <b>MongoDB</b></li>
+                                    <li>User authentication with <b>Google Sign-In</b>, <b>Apple Sign-In</b>, <b>JWT</b>
+                                    </li>
+                                    <li><b>Cloudinary</b> integration for image management</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">Flutter</span>
+                                    <span class="project-tag">Node.js</span>
+                                    <span class="project-tag">Express</span>
+                                    <span class="project-tag">MongoDB</span>
+                                    <span class="project-tag">JWT</span>
+                                    <span class="project-tag">Apple Sign-In</span>
+                                    <span class="project-tag">Google Sign-In</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="budget-en-slides">
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/2563eb/white?text=Budget+Dashboard"
+                                            alt="Budget Dashboard">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1d4ed8/white?text=Budget+Transactions"
+                                            alt="Budget Transactions">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1e40af/white?text=Budget+Reports"
+                                            alt="Budget Reports">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('budget-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('budget-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="budget-en-indicators">
+                                    <span class="indicator active" onclick="currentSlide('budget-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('budget-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('budget-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Dino Budget Tracker</h3>
+                                <p>Personal expense tracking application</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>Cross-platform expense tracking application</li>
+                                    <li><b>Firebase</b> integration for data storage</li>
+                                    <li>User authentication with <b>Google Sign-In</b></li>
+                                    <li>User-friendly, easy-to-use interface</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">Flutter</span>
+                                    <span class="project-tag">Firebase</span>
+                                    <span class="project-tag">Google Sign-In</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="telegram-en-slides">
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/0f172a/white?text=Telegram+Bot+Interface"
+                                            alt="Telegram Bot Interface">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/1e293b/white?text=System+Monitoring"
+                                            alt="System Monitoring">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="https://placehold.co/600x400/334155/white?text=User+Management"
+                                            alt="User Management">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('telegram-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('telegram-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="telegram-en-indicators">
+                                    <span class="indicator active"
+                                        onclick="currentSlide('telegram-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('telegram-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('telegram-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Telegram Bot</h3>
+                                <p>Internal system operations support</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>Bot for system reporting and alerts for network and device systems at
+                                        supermarkets, stores</li>
+                                    <li>Lookup store information and process user AD (Active Directory) accounts</li>
+                                    <li>Backend built with <b>Node.js</b>, <b>MySQL</b></li>
+                                    <li><b>Windows Services</b> integration using <b>C#</b> for background operation
+                                    </li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">Node.js</span>
+                                    <span class="project-tag">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="assets-en-slides">
+                                    <div class="slide">
+                                        <img src="projects/assets/Assets.png" alt="Asset Management System"
+                                            class="project-image">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('assets-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('assets-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="assets-en-indicators">
+                                    <span class="indicator active" onclick="currentSlide('assets-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('assets-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('assets-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>Asset Management System</h3>
+                                <p>IT equipment and employee management</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li>IT equipment asset management for enterprises</li>
+                                    <li><b>LDAP</b> integration for employee information synchronization</li>
+                                    <li>Web interface with <b>PHP</b>, <b>Bootstrap</b></li>
+                                    <li>Data storage with <b>MySQL</b></li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">PHP</span>
+                                    <span class="project-tag">MySQL</span>
+                                    <span class="project-tag">Bootstrap</span>
+                                    <span class="project-tag">LDAP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="stools-en-slides">
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PC_A.png" alt="STools for PC"
+                                            class="project-image">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PDT_A.png" alt="STools for PDT">
+                                    </div>
+                                    <div class="slide">
+                                        <img src="projects/stools/STools_for_PDT_B.png" alt="STools for PD">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('stools-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('stools-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="stools-en-indicators">
+                                    <span class="indicator active" onclick="currentSlide('stools-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('stools-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('stools-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>STools for PC and PDT</h3>
+                                <p>Supermarket inventory support</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li><b>STools</b> for PC connects to <b>MSSQL</b> database, user-friendly interface
+                                        with <b>DotnetBar</b></li>
+                                    <li><b>XML</b> integration for configuration and data storage</li>
+                                    <li><b>STools</b> for PDT runs on Windows Mobile 6, uses <b>SQLite</b> for data
+                                        storage</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">MSSQL</span>
+                                    <span class="project-tag">SQLite</span>
+                                    <span class="project-tag">XML</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="slideshow-container">
+                                <div class="slides" id="assistant-en-slides">
+                                    <div class="slide">
+                                        <img src="projects/caller/GrandStream Caller.PNG" alt="Asset Management System"
+                                            class="project-image">
+                                    </div>
+                                </div>
+                                <button class="prev" onclick="changeSlide('assistant-en-slides', -1)">&#10094;</button>
+                                <button class="next" onclick="changeSlide('assistant-en-slides', 1)">&#10095;</button>
+                                <div class="indicators" id="assistant-en-indicators">
+                                    <span class="indicator active"
+                                        onclick="currentSlide('assistant-en-slides', 0)"></span>
+                                    <span class="indicator" onclick="currentSlide('assistant-en-slides', 1)"></span>
+                                    <span class="indicator" onclick="currentSlide('assistant-en-slides', 2)"></span>
+                                </div>
+                            </div>
+                            <div class="project-header">
+                                <h3>IT Assistant & Grandstream Caller</h3>
+                                <p>ServiceDesk support</p>
+                            </div>
+                            <div class="project-body">
+                                <ul>
+                                    <li><b>Grandstream Caller</b> helps connect contacts and make quick calls to users
+                                    </li>
+                                    <li><b>IT Assistant</b> is a <b>Chrome Extension</b> for supporting lookup and
+                                        processing tasks on the <b>ServiceDesk</b> web</li>
+                                    <li>Backend connection using <b>WebSocket</b> to perform operations on <b>Active
+                                            Directory</b>, <b>MySQL</b> data</li>
+                                    <li>Increased productivity for the IT department</li>
+                                </ul>
+                                <div class="project-tags">
+                                    <span class="project-tag">C#</span>
+                                    <span class="project-tag">JavaScript</span>
+                                    <span class="project-tag">WebSocket</span>
+                                    <span class="project-tag">Chrome Extension</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="contact" id="contact-en">
+                <div class="container">
+                    <h2 class="section-title">Get In <span>Touch</span></h2>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <h3>Let's Create Something Amazing Together?</h3>
+                            <p>I'm always ready to join new projects, learn new technologies, and deliver real value.
+                                Contact me if you need a responsible, proactive, and flexible team member.</p>
+
+                            <div class="contact-methods">
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>lamphuqui@gmail.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Phone</h4>
+                                        <p>+84 933 712 202</p>
+                                    </div>
+                                </div>
+
+                                <div class="contact-method">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Location</h4>
+                                        <p>Can Tho, Vietnam</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-form">
+                            <form id="contactFormEn">
+                                <div class="form-group">
+                                    <label for="nameEn">Name</label>
+                                    <input type="text" id="nameEn" placeholder="Enter your name" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="emailEn">Email</label>
+                                    <input type="email" id="emailEn" placeholder="Enter your email" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="messageEn">Message</label>
+                                    <textarea id="messageEn" placeholder="Enter your message" required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="container">
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                    <p class="copyright">© 2019 Nguyen Van A - Fullstack Developer. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Modal for full image -->
+        <div id="imageModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="modalImage">
+        </div>
+
+        <script>
+            // Language Toggle
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const lang = this.dataset.lang;
+
+                    // Update active button
+                    document.querySelectorAll('.lang-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+
+                    // Show/hide content
+                    document.querySelectorAll('.vi-content, .en-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.querySelector(`.${lang}-content`).classList.add('active');
+
+                    // Show/hide nav links
+                    if (lang === 'vi') {
+                        document.querySelectorAll('.nav-link-vi').forEach(link => {
+                            link.style.display = 'block';
+                        });
+                        document.querySelectorAll('.nav-link-en').forEach(link => {
+                            link.style.display = 'none';
+                        });
+                    } else {
+                        document.querySelectorAll('.nav-link-vi').forEach(link => {
+                            link.style.display = 'none';
+                        });
+                        document.querySelectorAll('.nav-link-en').forEach(link => {
+                            link.style.display = 'block';
+                        });
+                    }
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Form submission handling
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Cảm ơn bạn đã liên hệ! Tôi sẽ phản hồi sớm nhất có thể.');
+                this.reset();
+            });
+
+            document.getElementById('contactFormEn').addEventListener('submit', function (e) {
+                e.preventDefault();
+                alert('Thank you for contacting me! I will respond as soon as possible.');
+                this.reset();
+            });
+
+            // Simple animation on scroll
+            window.addEventListener('scroll', function () {
+                const sections = document.querySelectorAll('section');
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Initialize section animations
+            document.addEventListener('DOMContentLoaded', function () {
+                const sections = document.querySelectorAll('section');
+                sections.forEach(section => {
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                });
+
+                // Trigger initial animation for first section
+                setTimeout(() => {
+                    if (sections.length > 0) {
+                        sections[0].style.opacity = '1';
+                        sections[0].style.transform = 'translateY(0)';
+                    }
+                }, 100);
+            });
+
+            // Slideshow functionality
+            function changeSlide(slideshowId, direction) {
+                const slides = document.getElementById(slideshowId);
+                const indicators = document.getElementById(slideshowId.replace('-slides', '-indicators'));
+                const slideWidth = slides.parentElement.offsetWidth;
+                const currentTransform = getTransformValue(slides);
+                const slideCount = slides.children.length;
+                let currentIndex = Math.abs(currentTransform / slideWidth);
+
+                currentIndex += direction;
+
+                if (currentIndex < 0) {
+                    currentIndex = slideCount - 1;
+                } else if (currentIndex >= slideCount) {
+                    currentIndex = 0;
+                }
+
+                slides.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+
+                // Update indicators
+                updateIndicators(indicators, currentIndex);
+            }
+
+            function currentSlide(slideshowId, index) {
+                const slides = document.getElementById(slideshowId);
+                const indicators = document.getElementById(slideshowId.replace('-slides', '-indicators'));
+                const slideWidth = slides.parentElement.offsetWidth;
+
+                slides.style.transform = `translateX(${-index * slideWidth}px)`;
+
+                // Update indicators
+                updateIndicators(indicators, index);
+            }
+
+            function updateIndicators(indicatorsContainer, currentIndex) {
+                const indicators = indicatorsContainer.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+
+            function getTransformValue(element) {
+                const transform = window.getComputedStyle(element).transform;
+                if (transform === 'none') return 0;
+                const matrix = new DOMMatrix(transform);
+                return matrix.m41;
+            }
+
+            // Auto slide change
+            document.addEventListener('DOMContentLoaded', function () {
+                // Set up auto slide for each slideshow
+                const slideshows = [
+                    'sageful-slides',
+                    'budget-slides',
+                    'telegram-slides',
+                    'assets-slides',
+                    'stools-slides',
+                    'assistant-slides',
+                    'sageful-en-slides',
+                    'budget-en-slides',
+                    'telegram-en-slides',
+                    'assets-en-slides',
+                    'stools-en-slides',
+                    'assistant-en-slides'
+                ];
+
+                slideshows.forEach(slideshowId => {
+                    setInterval(() => {
+                        changeSlide(slideshowId, 1);
+                    }, 5000);
+                });
+            });
+
+            // Image modal functionality
+            document.addEventListener('DOMContentLoaded', function () {
+                const modal = document.getElementById("imageModal");
+                const modalImg = document.getElementById("modalImage");
+                const closeBtn = document.getElementsByClassName("close")[0];
+
+                // Add click event to all images in slides
+                document.querySelectorAll('.slide img').forEach(img => {
+                    img.addEventListener('click', function () {
+                        modal.style.display = "flex";
+                        modalImg.src = this.src;
+                        modalImg.alt = this.alt;
+                    });
+                });
+
+                // Close modal when clicking on X
+                closeBtn.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // Close modal when clicking outside the image
+                modal.onclick = function (event) {
+                    if (event.target === modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            });
+        </script>
+    </body>
+
+    </html>
+
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>
